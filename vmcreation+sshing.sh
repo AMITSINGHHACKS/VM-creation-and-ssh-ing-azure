@@ -16,8 +16,8 @@ terraform apply -auto-approve
 
 #get details of the resource created
 terraform state list 
-ip_address=$(terraform state show azurerm_linux_virtual_machine.my_vm[0] | grep -w "public_ip_address" | awk '{print$3}')
-uname=$(terraform state show azurerm_linux_virtual_machine.my_vm[0] | grep -w "admin_username" | awk '{print$3}')
+ip_address=$(terraform state show azurerm_linux_virtual_machine.my_vm[0] | grep -w "public_ip_address" | awk '{print$3}'| tr -d '"')
+uname=$(terraform state show azurerm_linux_virtual_machine.my_vm[0] | grep -w "admin_username" | awk '{print$3}'| tr -d '"')
 
 ssh $uname@$ip_address
 
