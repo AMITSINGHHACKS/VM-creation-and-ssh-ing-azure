@@ -26,7 +26,7 @@ terraform state list
 ip_address=$(terraform state show azurerm_linux_virtual_machine.my_vm[0] | grep -w "public_ip_address" | awk '{print$3}'| tr -d '"')
 uname=$(terraform state show azurerm_linux_virtual_machine.my_vm[0] | grep -w "admin_username" | awk '{print$3}'| tr -d '"')
 
-ssh $uname@$ip_address
+sshpass -p $PASS ssh -o StrictHostKeyChecking=no $uname@$ip_address
 
 exit
 
